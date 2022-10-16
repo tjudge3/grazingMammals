@@ -1,5 +1,5 @@
 //No imports needed
-//2022-09-29 - Project 3 - tjudge
+//Inheritance Assignment - Project 3 - tjudge
 abstract class Mammal{
     public void nursesYoung(){
         String classname = this.getClass().getName();
