@@ -1,207 +1,96 @@
 
-You have already completed a text-based, command-line application using an ArrayList of Java objects (ElectricCars). There are several big limitations with that version. 
- First,  it is pretty uninteresting to talk about electric cars without including some graphics,  and our first attempt did not include pictures!   
-Furthermore,  top-10 type lists are typically web-based! 
-Finally,  while this is not a web development course,  data structures are especially important for web applications and we would be remiss to not at least introduce the connection.
-This lab intends to give students at least a taste of using dynamic Java data structures in a web environment.  I hope you find the project fun and interesting.  
-You have already completed an Electric Car List application
-Part 1:  Setup IntelliJ Ultimate Edition and Create a Simple Hello World Web App
-Download and install JetBrains IntelliJ Ultimate Edition (Links to an external site.)- This version includes support for Java web development including Java Server Pages and Servlets.  
-Request a student license for Ultimate Edition from Jetbrains by pressing the Apply Now button in this link. (Links to an external site.).  Jetbrains usually responds within 24 hours on weekdays but you can use the 30-day trial version while you are waiting.  Install the license per the instructions provided by Jetbrains. 
-Download and Install the Tomcat application server, which IntelliJ will use to run your website.  There are different versions of Tomcat for Windows or macOS: 
+In this project, you will learn about abstract classes.  inheritance, and interfaces in Java.  You also may learn something about farm animals that you may not have known before.  You will, however, NOT be tested on farm animals. But you DO need to learn about inheritance and interfaces.
 
-For Windows users do the following:  
-Go to the following link to download the server files or later version:   
-https://tomcat.apache.org/download-90.cgi#9.0.65Links to an external site.
+We will model three grazing farm animals, namely Cows, Goats, and Horses.  All of these animals are mammals.  They are also all grazing mammals.   But of course, all Mammals do not graze.  For example, although I believe most of my students are mammals,  I am not sure about all of their eating habits. 
 
-Click on Quick Navigation and select 64-bit Windows zip (pgp, sha512). Links to an external site.  
-Copy the folder from your zip  (apache-tomat-9.0.65 to a directory of your choosing, e.g.  c:\mytomcat\tomcat.  Your tomcat  installation home directory will be c:\mytomcat\tomcat\apache-tomat-9.0.65.  (Your version number may be different).  
-For macOs Users, go to the following link to download and install your Tomcat application server files: 
+A few more facts about farm animals:  Ruminants are a particular type of grazing mammal, in that Ruminants chew the cud.  They also have multiple stomachs for digesting their forage.  Giraffes are ruminants but giraffes are not farm animals.  
 
-https://tomcat.apache.org/download-90.cgi#9.0.65 Links to an external site.  (Your version number may be different). 
+Cows and goats have multiple stomachs and chew the cud.  Horses graze but are not ruminants and do not chew the cud and do not have multiple stomachs. 
 
-Once you have installed Tomcat, press Ctrl+Alt+S in IntelliJ to open your IDE settings and select Build, Execution, Deployment | Application Servers. Click the Add button and select the Tomcat Server.
-Set My Tomcat Home to set your tomcat folder location as described above.   Your Tomcat version and folder location may be slightly different:  
- Create a new IntelliJ project in IntelliJ Ultimate using the following settings similar to those indicated below. Your Project SDK may be different, which is fine.  
-NewJavaEnterprise-1.JPG
+The concepts of Mammal, Grazing Mammal, and Ruminant are abstractions, that is, these words are conceptual constructs.  You cannot go to a farm animal auction or Amazon and buy a Ruminant.  If you ask for one, the seller will ask you what kind. You must buy an actual, concrete, non-abstract animal such as a cow. goat, or horse.   For this reason, if we model Mammal, GrazingMammal, and Ruminant classes in Java, these classes are declared as abstract and cannot be instantiated (just like a ruminant cannot be born or bought).
 
-Make sure you select Java Enterprise and Web Application. 
+However, the characteristics and behavior of mammals, grazing mammals, and ruminants can be inherited by their descendants, as shown below.  
 
-Open the Dependencies folder and select the Servlet checkbox if not already selected.  Do not select any options under Implementations.  
-Press Finish.  Select This Window or New Window. 
-Press Ctrl+Alt+S to open IDE settings and select Build, Execution, Deployment | Application Servers. Click the Add button and select the Tomcat Server.
-Set My Tomcat Home to your tomcat folder.  If your folder location is as suggested above, your setting will something like the following (Your Tomcat version may be different):
-C:\mytomcat\tomcat\apache-tomcat-9.0.53
-Press OK again to finalize your configuration.  
+Your job is to implement the following class design:
 
-Your Run Configuration under your Run menu should now look something like this if you want to check: 
+GrazingMammalsDiag.JPG  
 
-WebAppRunConfig-1.JPG
 
-To view what has been created by IntelliJ, open your Project Folder in the Project Window.  In the src\main\webapp folder, you will find a file index.jsp.   This will look just like an html file except that it will contain a special jsp tag.  The text in the <%=  %>  will be displayed on your webpage. Any Java expression can be placed in this tag type.  
-      <%= "Hello World!" %>
+All components of this exercise are provided in the instructions below.  You will just need to assemble the components as instructed.  To make this easier, you are provided below with a stubbed-out source code file listing only the declarations for the classes that you need to populate with code.  
 
-Run the Tomcat server from your Run menu to test your sample web application.  It will take a minute or two to start the server and will load your web app in a browser and should look something like this:  
-HelloWorld.JPG
+You may implement your project using either IntelliJ by creating a new project and adding this java file to your project, or by adding a new class and pasting the file below,  to your new class. 
 
+You can download the empty java file GrazingMammals.java that you need to implement here.  
+
+How to implement the GrazingMammals project:
+
+ Create an abstract class Mammal. As shown in the class diagram.  Mammal has one public method nursesYoung() that prints out “I am a “ + className + “. I am  nursing.”   You can get the class name from the instance of any class with the following:
+String className = this.getClass().getSimpleName(); 
+
+}
  
 
-Click on the Hello Servlet link in your web app browser.   This will take you to a slightly different webpage without the Hello Servlet link.   This page is generated by a Java Servlet. 
-To see the Servlet, go to your IntelliJ project window in the TopElectricCarList project folder under src/main/java/Edu.dccc.topelectcarlist and open the HelloServlet class.  See the image below:  
- 
+2. Create an interface RuminantTester..  The interface should contain two public methods. You can copy and paste these into the interface.
 
-ServletClassPath.JPG
- 
+     void testIfRuminant(); 
+     void  testHasMultipleStomachs(); 
+3. Create an abstract class GrazingMammal similar to Mammal but which implements the method grazes().   This method should print out "I am a " + className + ". I am grazing.", similar to what we did with the Mammal class. 
 
-You should see a java class that looks like this:  
+GrazingMammal extends from Mammal and implements the interface RuminantTester.  
 
-package edu.dccc.topelectriccarlist;
+To implement the interface you need to add the two methods in the interface to GrazingMammal.   These are provided here: 
 
-import java.io.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+     @Override
+    public void testHasMultipleStomachs()  {
+        String className = this.getClass().getName(); 
+        if (this instanceof Ruminant) 
+           System.out.println("I am a " + className + ". I have multiple stomachs."); 
+       else 
+          System.out.println("I am a " + className + ". I do not have multiple stomachs."); 
+    } 
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class HelloServlet extends HttpServlet {
-    private String message;
+    @Override
+    public void testIfRuminant()  {
+       String className = this.getClass().getName(); 
+       if (this instanceof Ruminant ) 
+          System.out.println("I am a " + className + ". I am a Ruminant."); 
+       else 
+          System.out.println("I am a " + className + ". I am not a Ruminant."); 
+     }
+The @Override annotation indicates that we are replacing the interface stub method with a method body.  We can also override methods from an inherited class and this case also uses this annotation. 
 
-    public void init() {
-        message = "Hello World!";
+4. Create an abstract class Ruminant that extends GrazingMammal.  Ruminant should print out "I am a " + className + ". I am chewing cud."), similar to the Mammal method implementation.
+
+5.  Add the classes Cow and Goat, which extend Ruminant, and add the class Horse which extends GrazingMammal.  These three classes are just class declarations with empty bodies, yet they provide all the behavior we need. 
+
+How is it possible that these classes can provide behavior when they have no code in the body of the class?   Please include an answer to this question as part of your assignment submission. 
+
+6.   A test driver class called GrazingMammals is provided below,   Add this to your project file. 
+
+public class TestMammals {
+    public static void main(String[] args) {
+        Cow cow = new Cow();
+        cow.nursesYoung(); 
+        cow.grazes(); 
+        cow.chewsCud();
+        cow.testIfRuminant();
+        cow.testHasMultipleStomachs();
+        System.out.println("\n"); 
+        Goat goat = new Goat();
+        goat.nursesYoung(); 
+        goat.grazes(); 
+        goat.chewsCud();
+        goat.testIfRuminant();
+        goat.testHasMultipleStomachs();
+        System.out.println("\n"); 
+        Horse horse  = new Horse();
+        horse.nursesYoung(); 
+        horse.grazes(); 
+        horse.testIfRuminant();
+        horse.testHasMultipleStomachs(); 
     }
-
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
-    }
-
-    public void destroy() {
-    }
 }
-Unlike the jsp your html tags are generated manually and printed to the browser.  You can create webpages of virtually any complexity using println to generate your tags to a  printstream read by your browser. 
-Create screenshots of the browser output for your jsp page, servlet, and java file for your HelloServlet source code. 
-Congratulations on creating your first Java Server Page and Java Servlet!
+Notes:   
 
-In part 2 of this lab, you will create a more interesting Java Server Page to create a Top Electric Cars Web application.  
-
-Part 2:  Create a Top Electric Cars  Web App using a Java Server Page
-
-Part 2a:  Create Backend Java Classes to store and retrieve data for Web App
-
-Visit the Car and Driver Top Selling Electric Cars of 2021 Links to an external site.Website.  This website is a static html page with all the code hard coded in the page.  For this section,  we are going to instead of the Car and Driver site static page, create a similar page using a JSP and backend Java classes to dynamically create the html on the server on the fly to simulate retrieving data dynamically from a web server or web service, something that is done constantly in the industry using Java or languages on the back end. 
-Create a new Web Application in IntelliJ and name ElectricCarList or something similar.   
-Create a new class ElectricCar in your project folder under: src\main\java\ecu.dccc\TopElectricCars folder.  For package name, you can use edu.dccc.TopElectricCars or something similar.  
-Your ElectricCar class should have the following attributes: 
-
-ElectricCarDiagram.JPG
- class ElectricCar {
-   String model;
-   String imgSrc; 
-   double basePrice;
-   int epaMaxRange;
-   String epaFuelEconomy; 
-   int rank;
- }
-
-Add a method to ElectricCar to return basePrice as a formatted currency String:
-public String getFormattedBasePrice() {
-    NumberFormat formatter = NumberFormat.getCurrencyInstance();
-   return formatter.format(basePrice);
-}
-Create another Java class called ElectricCarList with the following attributes and methods:
-
-public class ElectricCarList {
- ArrayList<ElectricCar> carList = new ArrayList<>();
-}
-
- public ArrayList<ElectricCar> getCarList() {
-    return carList;
- }
-From inside your Electric Car class code in the IntelliJ editor,  right-mouse-click in the IntelliJ editor and select the Generate menu item (or press Alt-Insert).  Generate getters for all attributes.  Right-mouse-click and select Generate again and create a Constructor.  Call Generate again and create a toString method.   Your ElectricCar class should now have getters for all attributes, a toString()  method that you can call to list the names and values of all the attributes, and a Constructor for populating the class object. 
-In your class ElectricCarList add methods to populate your ArrayList<ElectricCar> and to retrieve an ElectricCar by index from the ArrayList. 
-public void populateElectricCarList() {
-    carList.add(new ElectricCar("Tesla Model Y",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2020-tesla-model-y-long-range-101-1gg-1619638071.jpeg?crop=1xw:1xh;center,top&resize=980:*",
-            41190,244,"129/140/119 MPGe", 1));
-    carList.add(new ElectricCar("Tesla Model 3",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lhd-performance-hero-dgg-1619637548.jpeg?crop=1xw:1xh;center,top&resize=980:*",
-            38690,353,"142/150/133 MPGe", 2));
-    carList.add(new ElectricCar("Chevrolet Bolt EV and EUV",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2022-chevrolet-bolt-ev-109-161gg-1619636720.jpeg?crop=1xw:1xh;center,top&resize=980:*",
-            37495,259,"118/127/108 MPGe", 3));
-    carList.add(new ElectricCar("Ford Mustang Mach-E",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2021-ford-mustang-mach-e-4-104-16gg-1619635226.jpeg?crop=1xw:1xh;center,top&resize=980:*",
-            43995,305,"100/105/93 MPGe", 4));
-    carList.add(new ElectricCar("Nissan Leaf",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2021-nissan-nissan-leaf-sv-plus-4-source-source-1619632959.jpg?crop=1xw:1xh;center,top&resize=980:*",
-            32620,226,"111/123/99 MPGe", 5));
-    carList.add(new ElectricCar("Audi e-tron and e-tron Sportback",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2020-audi-e-tron-sportback-133-1gg-1619634021.jpeg?crop=1xw:1xh;center,top&resize=980:*",
-            66995,222,"78/78/77 MPGe", 6));
-    carList.add(new ElectricCar("Volkswagen ID.4",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/mx-exterior-hero-desktop-1-1619635017.jpg?crop=1xw:1xh;center,top&resize=980:*",
-            41190,250,"91/104/89 MPGe", 7));
-    carList.add(new ElectricCar("Tesla Model X ",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2020-tesla-model-y-long-range-101-1gg-1619638071.jpeg?crop=1xw:1xh;center,top&resize=980:*",
-            91190,371,"105/109/101 MPGe ", 8));
-    carList.add(new ElectricCar("Porsche Taycan",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2020-porsche-taycan-turbo-s-and-2020-tesla-model-s-102-1ggg-1619630053.jpeg?crop=1xw:1xh;center,top&resize=980:*",
-            81250,227,"79/76/84 MPGe", 9));
-    carList.add(new ElectricCar("Tesla Model S",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/mx-exterior-hero-desktop-1-1619635017.jpg?crop=1xw:1xh;center,top&resize=980:*",
-            81190,402,"117/121/112 MPGe", 10));
-    carList.add(new ElectricCar("Hyundai Kona Electric",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/large-44706-2022konaelectric-1619629439.jpg?crop=1xw:1xh;center,top&resize=980:*",
-            38575,258,"120/132/108 MPGe", 11));
-    carList.add(new ElectricCar("Hyundai Ioniq Electric",
-            "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/large-42490-2021ioniqelectric-1619628240.jpg?crop=1xw:1xh;center,top&resize=980:*",
-            34250,170,"133/145/121 MPGe", 12));
-}
-
-//  Method to return an Electric by index 
-  public ElectricCar getCarByIndex(int i) {
-    ElectricCar car = carList.get(i);
-    return  car;
-  }
-}
-
-Part 2b:  Create a jsp file to loop through your ElectricCar object to generate your jsp. 
-
-Save a copy of your HelloWorld index.jsp file as a different name, e.g. indexHello.jsp.  Replace your original index.jsp with the following, which will be the index page for the TopElectricCarList web app. The java code between the tags <% my java source code %> is called jsp scriptlets. (Links to an external site.) (Links to an external site.) 
-<%@ page import="edu.dccc.TopElectricCars.ElectricCarList" %>
-<%@ page import="edu.dccc.TopElectricCars.ElectricCar" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Car and Driver Top Electric Cars</title>
-</head>
-<body>
-</h1>
-<br/>
-
-<h1>12 Top Selling Electric Vehicles of 2021</h1>
-    <%
-        // Following 3 lines simulate retrieving data from a database or other data source
-        ElectricCarList cl = new ElectricCarList();
-        cl.populateElectricCarList();
-        ArrayList<ElectricCar> carList = cl.getCarList();
-
-        // Dynamically generate top car list
-        for (ElectricCar car: carList ) { %>
-            <h2><%= car.getRank()%>. <%= car.getModel()%></h2>
-            <img src=<%=car.getImgSrc()%>>
-            <ul>
-                <li>Base price: <%=car.getFormattedBasePrice()%></li>
-                <li>EPA Fuel Economy combined/city/highway: <%=car.getEpaFuelEconomy()%></li>
-                <li>EPA Range: <%=car.getEpaMaxRange()%></li>
-            </ul>
-    <% } %>
-</body>
-</html>
-Using IntelliJ, select the Run menu to start the TomCat Server.  Your web app should display in your browser. 
+ All these classes can be included in a single code file named the same as the main class, in this case, GrazingMammals.java.  All other classes should be declared with just the class name (without the “public” access modifier).  
+All components of this exercise are provided in the instructions above. You will just need to assemble the components as instructed.  
